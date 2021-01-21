@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+cn.stylefeng.guns.sys.core.listener.ConstantsInitListener,\
+cn.stylefeng.guns.sys.core.listener.TimerTaskRunListener,\
+cn.stylefeng.guns.sys.core.listener.RemoveRequestParamListener

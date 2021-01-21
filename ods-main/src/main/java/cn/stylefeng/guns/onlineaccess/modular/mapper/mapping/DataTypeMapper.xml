@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.DataTypeMapper">
+
+    <resultMap id="dataType" type="cn.stylefeng.guns.onlineaccess.modular.entity.DataType">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="org_id" property="orgId" />
+        <result column="email" property="email" />
+        <result column="data_manager" property="dataManager" />
+        <result column="project_id" property="projectId" />
+        <!--        <association property="datanegotiator" javaType="cn.stylefeng.guns.sys.modular.user.result.SysUserResult">-->
+        <!--            <result column="name" property="name " />-->
+        <!--            <result column="email" property="email" />-->
+        <!--            <result column="phone" property="phone" />-->
+        <!--        </association>-->
+    </resultMap>
+
+    <!--        获取项目分页列表-->
+</mapper>

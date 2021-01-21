@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.ProjectUserMapper">
+    <resultMap id="projectUserResult" type="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="project_id" property="projectId" />
+        <result column="status" property="status" />
+        <result column="type" property="type" />
+        <association property="userResult" javaType="cn.stylefeng.guns.sys.modular.user.entity.SysUser">
+            <result column="id" property="id" />
+            <result column="name" property="name" />
+            <result column="email" property="email" />
+            <result column="phone" property="phone" />
+        </association>
+
+    </resultMap>
+    <select id="getDatanegotiatorByProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult" resultMap="projectUserResult">
+        select sys_user.name,sys_user.email,sys_user.phone
+        from project_user
+        left join sys_user on sys_user.id=project_user.user_id
+        where project_user.project_id=#{id} and project_user.type=#{type}
+    </select>
+
+    <!--        获取项目分页列表-->
+</mapper>

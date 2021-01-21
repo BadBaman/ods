@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.ProjectMapper">
+
+    <resultMap id="projectResult" type="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="article_num" property="articleNum" />
+        <result column="apply_num" property="applyNum" />
+        <result column="approval_num" property="approvalNum" />
+        <result column="visit_num" property="visitNum" />
+        <association property="projectUserResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult">
+            <result column="id" property="id" />
+            <result column="project_id" property="projectId" />
+            <result column="user_id" property="userId" />
+            <result column="status" property="status" />
+            <result column="type" property="type" />
+            <association property="userResult" javaType="cn.stylefeng.guns.sys.modular.user.entity.SysUser">
+                <result column="id" property="id" />
+                <result column="account" property="account" />
+                <result column="nick_name" property="nickName" />
+                <result column="name" property="name" />
+                <result column="avatar" property="avatar" />
+                <result column="birthday" property="birthday" />
+                <result column="sex" property="sex" />
+                <result column="email" property="email" />
+                <result column="phone" property="phone" />
+                <result column="tel" property="tel" />
+                <result column="status" property="status" />
+            </association>
+        </association>
+
+
+
+    </resultMap>
+    <select id="getProjectByProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
+        select
+                project.*,
+                a.*
+        from project left join (select project_user.*,sys_user.name as username,sys_user.avatar,sys_user.birthday,sys_user.sex,sys_user.email,sys_user.phone
+        ,sys_user.status as userstatus
+                                from project_user left join sys_user on project_user.user_id=sys_user.id
+                                where project_user.project_id=#{id}) as a on project.id=a.project_id
+        where project.id=#{id}
+
+    </select>
+
+    <select id="getProjectByUserIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
+        select
+                project.id,project.name
+        from project left join (select project_user.*,sys_user.id as userid,sys_user.avatar,sys_user.birthday,sys_user.sex,sys_user.email,sys_user.phone
+                                     ,sys_user.status as userstatus
+                                from project_user left join sys_user on project_user.user_id=sys_user.id
+                                ) as a on project.id=a.project_id
+        where a.userid=#{id}
+
+    </select>
+
+    <select id="getProjectByUserIdAndStatusResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
+        select a.*
+        from
+        (select project.id,project.name,project.description,project.status
+        from project left join project_user
+        on project_user.project_id=project.id
+        <where>
+                 project_user.`user_id`=#{id}
+        </where>) as a
+        <where>
+            a.status=#{status}
+        </where>
+    </select>
+
+</mapper>

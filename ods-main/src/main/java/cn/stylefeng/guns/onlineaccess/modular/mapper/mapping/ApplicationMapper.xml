@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.ApplicationMapper">
+
+    <resultMap id="applicationResult" type="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">
+        <id column="id" property="id" />
+        <result column="status" property="status" />
+        <result column="applicant_id" property="applicantId" />
+        <result column="created_time" property="createdTime" />
+        <result column="subject_name" property="subjectName" />
+        <result column="subject_keyword" property="subjectKeyword" />
+        <result column="project_participants" property="projectParticipants" />
+        <collection property="applicationDataTypeResultList" ofType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationDataTypeResult" javaType = "java.util.ArrayList">
+            <id column="id" property="id" />
+            <result column="application_id" property="applicationId"/>
+            <association property="dataTypeResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.DataTypeResult">
+                <result column="id" property="id" />
+                <result column="name" property="name" />
+                <result column="data_manager" property="dataManager" />
+            </association>
+        </collection>
+
+        <!--        <association property="sysEmpInfo" javaType="cn.stylefeng.guns.sys.modular.emp.result.SysEmpInfo">-->
+        <!--            <result column="job_num" property="jobNum" />-->
+        <!--            <result column="org_id" property="orgId" />-->
+        <!--            <result column="org_name" property="orgName" />-->
+        <!--        </association>-->
+    </resultMap>
+<!--    <resultMap id="applicationDetails" type="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">-->
+<!--        <id column="id" property="id" />-->
+<!--        <result column="status" property="status" />-->
+<!--        <result column="applicant_id" property="applicantId" />-->
+<!--        <result column="created_time" property="createdTime" />-->
+<!--        <result column="subject_name" property="subjectName" />-->
+<!--        <result column="subject_keyword" property="subjectKeyword" />-->
+<!--        <result column="project_participants" property="projectParticipants" />-->
+<!--        <collection property="applicationDataTypeResultList" ofType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationDataTypeResult">-->
+<!--            <result column="application_id" property="applicationId"/>-->
+<!--            <association property="dataTypeResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.DataTypeResult">-->
+<!--                <result column="id" property="id" />-->
+<!--                <result column="datatype_name" property="dataTypeName" />-->
+<!--                <result column="datatype_data_manager" property="dataTypeDataManager" />-->
+<!--            </association>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+
+    <select id="getApplicationByUserIdAndProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult">
+        select c.*
+        from
+        (select application.id,application.status,application.applicant_id,application.created_time,application.subject_name,application.subject_keyword,application.project_participants,a.*
+        from application left join (
+        select application_data_type.application_id,data_type.name,data_type.data_manager
+        from application_data_type left join data_type
+        on application_data_type.data_type_id=data_type.id where data_type.project_id=#{projectId}
+        ) as a on application.id=a.application_id
+        where application.applicant_id=#{userId}) as c
+    </select>
+
+    <select id="getApplicationByUserId" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult" >
+        select c.*
+        from
+        (select application.id,application.status,application.applicant_id,application.created_time,application.subject_name,application.subject_keyword,application.project_participants,a.*
+
+        from application left join (
+        select application_data_type.application_id,data_type.name,data_type.data_manager
+        from application_data_type left join data_type
+        on application_data_type.data_type_id=data_type.id
+        ) as a on application.id=a.application_id
+        where application.applicant_id=#{id}) as c
+    </select>
+</mapper>

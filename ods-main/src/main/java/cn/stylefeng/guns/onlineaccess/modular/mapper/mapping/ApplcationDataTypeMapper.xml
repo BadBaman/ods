@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.ProjectMapper">
+
+<!--    <resultMap id="applicationDataType" type="cn.stylefeng.guns.onlineaccess.modular.entity.ApplicationDataType">-->
+<!--        <id column="id" property="id" />-->
+<!--        <result column="data_type_id" property="dataTypeId" />-->
+<!--        <result column="application_id" property="applicationId" />-->
+
+<!--        &lt;!&ndash;        <association property="sysUser" javaType="cn.stylefeng.guns.sys.modular.user.entity.SysUser">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="name" property="name " />&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="email" property="email" />&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="phone" property="phone" />&ndash;&gt;-->
+<!--        &lt;!&ndash;        </association>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        <association property="datanegotiator" javaType="cn.stylefeng.guns.sys.modular.user.result.SysUserResult">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="name" property="name " />&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="email" property="email" />&ndash;&gt;-->
+<!--        &lt;!&ndash;            <result column="phone" property="phone" />&ndash;&gt;-->
+<!--        &lt;!&ndash;        </association>&ndash;&gt;-->
+<!--    </resultMap>-->
+
+</mapper>

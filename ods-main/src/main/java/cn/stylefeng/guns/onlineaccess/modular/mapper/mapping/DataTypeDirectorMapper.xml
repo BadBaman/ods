@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.DataTypeDirectorMapper">
+
+    <resultMap id="dataTypeDirector" type="cn.stylefeng.guns.onlineaccess.modular.entity.DataTypeDirector">
+        <id column="id" property="id" />
+        <result column="data_type_id" property="dataTypeId" />
+        <result column="data_manager" property="userId" />
+
+
+        <!--        <association property="sysUser" javaType="cn.stylefeng.guns.sys.modular.user.entity.SysUser">-->
+        <!--            <result column="name" property="name " />-->
+        <!--            <result column="email" property="email" />-->
+        <!--            <result column="phone" property="phone" />-->
+        <!--        </association>-->
+
+        <!--        <association property="datanegotiator" javaType="cn.stylefeng.guns.sys.modular.user.result.SysUserResult">-->
+        <!--            <result column="name" property="name " />-->
+        <!--            <result column="email" property="email" />-->
+        <!--            <result column="phone" property="phone" />-->
+        <!--        </association>-->
+    </resultMap>
+<!--    <resultMap id="goodsMap" type="com.ozomall.vo.GoodsVo">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="goodsName" column="goods_name"></result>-->
+<!--        <result property="goodsPrice" column="goods_price"></result>-->
+<!--        <result property="commentCount" column="comment_count"></result>-->
+<!--        <result property="sales" column="sales"></result>-->
+<!--        <result property="classifyId" column="classify_id"></result>-->
+<!--        <result property="createTime" column="create_time"></result>-->
+<!--        <result property="status" column="status"></result>-->
+<!--        <result property="step" column="step"></result>-->
+<!--        <result property="cover" column="cover"></result>-->
+<!--        <association property="classify" javaType="com.ozomall.entity.AdminClassifyDto" columnPrefix="classify_">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result property="parentId" column="parent_id"/>-->
+<!--            <result property="classifyLevel" column="classify_level"/>-->
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="createTime" column="create_time"/>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <select id="dataTypeDirectorList" parameterType="cn.stylefeng.guns.onlineaccess.modular.entity.DataTypeDirector" resultMap="dataTypeDirector">
+        select data_type_director.*,admin_classify.*,admin_classify.id as classify_id from goods left join admin_classify on
+        goods.classify_id=admin_classify.id
+        where goods.del=0
+        <if test="form.goodsName != null">
+            and goods.goods_name=#{form.goodsName}
+        </if>
+        <if test="form.classifyId != null">
+            and goods.classify_id=#{form.classifyId}
+        </if>
+    </select>
+    <!--        获取项目分页列表-->
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.onlineaccess.modular.mapper.UserMapper">
+
+    <resultMap id="userResult" type="cn.stylefeng.guns.onlineaccess.modular.result.UserResult" >
+        <id column="id" property="id" />
+        <collection property="applicationResultList" ofType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">
+            <result column="applicant_id" property="applicantId" />
+            <result column="status" property="status" />
+            <result column="created_time" property="createdTime" />
+            <result column="subject_name" property="subjectName" />
+            <result column="subject_keyword" property="subjectKeyword" />
+            <collection property="applicationDataTypeResultList" ofType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationDataTypeResult">
+                <result column="data_type_id" property="dataTypeId" />
+                <result column="application_id" property="applicationId" />
+                <association property="dataTypeResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.DataTypeResult">
+                    <result column="datatype_name" property="datatypeName" />
+                    <result column="datatype_data_manager" property="datatypeDataManager" />
+                    <association property="projectResult" javaType="cn.stylefeng.guns.onlineaccess.modular.entity.Project"/>
+                </association>
+            </collection>
+        </collection>
+
+    </resultMap>
+
+    <select id="getProjectByUserIdAndProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.UserResult" resultMap="userResult">
+        select d.*
+        from
+                (select sys_user.id,c.*
+                 from sys_user left join (select b.*,application.applicant_id,application.subject_name,application.subject_keyword,application.created_time,
+                                                 application.status
+                                          from application left join (
+                                                  select application_data_type.application_id,a.datatype_name,a.datatype_data_manager
+                                                  from application_data_type left join (
+                                                          select data_type.id as datatypeid,data_type.datatype_name,data_type.datatype_data_manager
+                                                          from data_type left join project
+                                                                  on data_type.datatype_project_id=project.id where project.id=#{projectId}
+                                                          ) as a on application_data_type.data_type_id=a.datatypeid
+                                                  ) as b on application.id=b.application_id
+                         ) as c on sys_user.id=c.applicant_id where c.applicant_id=#{userId}) as d
+    </select>
+
+    <select id="getUserById" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.UserResult" resultMap="userResult">
+        select sys_user.id,sys_user.name,sys_user.email,sys_user.phone,application.subject_name
+        from sys_user left join application on sys_user.id=application.applicant_id
+        <where>
+            sys_user.id=#{id}
+        </where>
+    </select>
+
+
+</mapper>

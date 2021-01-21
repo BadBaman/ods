@@ -1,0 +1,49 @@
+#服务配置
+server:
+  port: 50082
+  max-http-header-size: 10240
+
+#spring相关配置
+spring:
+  profiles:
+    active: @spring.active@
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    locale: zh_CN
+    serialization:
+      # 格式化输出
+      indent_output: false
+  # activiti 模块
+  # 解决启动报错：class path resource [processes/] cannot be resolved to URL because it does not exist
+  activiti:
+    # 检测流程定义是否存在
+    check-process-definitions: false
+    # 检测身份信息表是否存在
+    db-identity-used: false
+    # 数据库表的更新方式
+    database-schema-update: true
+
+#mybaits相关配置
+mybatis-plus:
+  mapper-locations: classpath*:cn/stylefeng/**/mapping/*.xml, classpath:/META-INF/modeler-mybatis-mappings/*.xml, classpath*:mapper/**.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id
+      table-underline: true
+    enable-sql-runner: true
+  configuration-properties:
+    prefix:
+    blobType: BLOB
+    boolValue: TRUE
