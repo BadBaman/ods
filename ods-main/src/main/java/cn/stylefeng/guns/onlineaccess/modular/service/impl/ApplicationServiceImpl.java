@@ -32,4 +32,9 @@ public class ApplicationServiceImpl extends ServiceImpl<ApplicationMapper, Appli
     public List<Application> getApplicationByUserId(Long id) {
         return this.baseMapper.getApplicationByUserId(PageFactory.defaultPage(),id);
     }
+
+    @Override
+    public List<Application> getApplicantAndWorkflowRByApplicant(Long applicant) {
+        return this.baseMapper.getApplicantByApplicant(PageFactory.defaultPage(),applicant);
+    }
 }

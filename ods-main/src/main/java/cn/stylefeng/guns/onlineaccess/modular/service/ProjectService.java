@@ -106,7 +106,7 @@ public interface ProjectService extends IService<Project> {
 
 
     /**
-     * 查询项目的数据协调员信息
+     * 根据项目id查询项目信息
      *
      * @param id 查询参数
      * @return 查询分页结果

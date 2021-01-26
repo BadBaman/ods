@@ -14,4 +14,6 @@ public interface ApplicationMapper  extends BaseMapper<Application> {
     List<Application> getApplicationByUserIdAndProjectIdResult(Page page, Long projectId, Long userId);
 
     List<Application> getApplicationByUserId(Page page,Long id);
+
+    List<Application> getApplicantByApplicant(Page page,Long applicant);
 }

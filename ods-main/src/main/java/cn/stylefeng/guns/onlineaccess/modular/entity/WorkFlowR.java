@@ -17,7 +17,7 @@ public class WorkFlowR {
     /*
      *  申请人id applicant
      * */
-    private Long applicantId;
+    private Long applicationId;
 
 
     /*
@@ -52,12 +52,12 @@ public class WorkFlowR {
         this.status = status;
     }
 
-    public Long getApplicantId() {
-        return applicantId;
+    public Long getApplicationId() {
+        return applicationId;
     }
 
-    public void setApplicantId(Long applicantId) {
-        this.applicantId = applicantId;
+    public void setApplicationId(Long applicationId) {
+        this.applicationId = applicationId;
     }
 
     public String getProcId() {

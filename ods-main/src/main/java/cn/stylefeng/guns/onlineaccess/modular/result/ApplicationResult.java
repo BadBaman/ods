@@ -60,9 +60,15 @@ public class ApplicationResult {
      * */
     private List<ApplicationDataTypeResult> applicationDataTypeResultList;
 
+    private WorkFlowR workFlowR;
 
+    public WorkFlowR getWorkFlowR() {
+        return workFlowR;
+    }
 
-
+    public void setWorkFlowR(WorkFlowR workFlowR) {
+        this.workFlowR = workFlowR;
+    }
 
     public List<ApplicationDataTypeResult> getApplicationDataTypeResultList() {
         return applicationDataTypeResultList;

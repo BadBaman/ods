@@ -23,7 +23,12 @@ public class ApplicationController {
     }
 
     @GetMapping("/api/user/applylistdetails")
-    public List<Application> getapplylistdetailsByUserId(Long id){
-        return applicationService.getApplicationByUserId(id);
+    public ResponseData getapplylistdetailsByUserId(Long id){
+        return ResponseData.success(applicationService.getApplicationByUserId(id));
+    }
+
+    @GetMapping("/api/user/getApplicantAndWorkflowRByApplicant")
+    public ResponseData getApplicantAndWorkflowRByApplicant(Long applicant){
+        return ResponseData.success(applicationService.getApplicantAndWorkflowRByApplicant(applicant));
     }
 }

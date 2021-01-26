@@ -26,6 +26,24 @@
         <!--            <result column="org_name" property="orgName" />-->
         <!--        </association>-->
     </resultMap>
+
+    <resultMap id="applicationResult2" type="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">
+        <id column="id" property="id" />
+        <result column="status" property="status" />
+        <result column="applicant_id" property="applicantId" />
+        <result column="created_time" property="createdTime" />
+        <result column="subject_name" property="subjectName" />
+        <result column="org_id" property="orgId" />
+        <result column="subject_keyword" property="subjectKeyword" />
+        <result column="project_participants" property="projectParticipants" />
+        <association property="workFlowR" javaType="cn.stylefeng.guns.onlineaccess.modular.entity.WorkFlowR">
+            <result column="id" property="id" />
+            <result column="proc_id" property="procId" />
+            <result column="status" property="status" />
+            <result column="application_id" property="applicationId" />
+            <result column="current_task" property="currentTask" />
+        </association>
+    </resultMap>
 <!--    <resultMap id="applicationDetails" type="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">-->
 <!--        <id column="id" property="id" />-->
 <!--        <result column="status" property="status" />-->
@@ -68,5 +86,15 @@
         on application_data_type.data_type_id=data_type.id
         ) as a on application.id=a.application_id
         where application.applicant_id=#{id}) as c
+    </select>
+
+    <select id="getApplicantByApplicant" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult2">
+        select c.*
+        from
+        (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,workflow_r.application_id,workflow_r.current_task
+        from application left join workflow_r
+        on application.id=workflow_r.application_id
+        where application.applicant_id=#{applicant}
+        ) as c
     </select>
 </mapper>
