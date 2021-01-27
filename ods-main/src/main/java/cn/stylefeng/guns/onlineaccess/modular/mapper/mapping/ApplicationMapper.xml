@@ -88,7 +88,8 @@
         where application.applicant_id=#{id}) as c
     </select>
 
-    <select id="getApplicantByApplicant" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult2">
+    <!-- parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" -->
+    <select id="getApplicantByApplicant" resultMap="applicationResult2">
         select c.*
         from
         (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,workflow_r.application_id,workflow_r.current_task

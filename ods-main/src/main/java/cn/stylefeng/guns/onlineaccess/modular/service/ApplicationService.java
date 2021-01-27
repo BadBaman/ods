@@ -13,5 +13,5 @@ public interface ApplicationService extends IService<Application> {
 
     List<Application> getApplicationByUserId(Long id);
 
-    List<Application> getApplicantAndWorkflowRByApplicant(Long applicant);
+    List<ApplicationResult> getApplicantAndWorkflowRByApplicant(Long applicant);
 }

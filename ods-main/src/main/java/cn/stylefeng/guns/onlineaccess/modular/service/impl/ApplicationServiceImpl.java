@@ -34,7 +34,7 @@ public class ApplicationServiceImpl extends ServiceImpl<ApplicationMapper, Appli
     }
 
     @Override
-    public List<Application> getApplicantAndWorkflowRByApplicant(Long applicant) {
+    public List<ApplicationResult> getApplicantAndWorkflowRByApplicant(Long applicant) {
         return this.baseMapper.getApplicantByApplicant(PageFactory.defaultPage(),applicant);
     }
 }
