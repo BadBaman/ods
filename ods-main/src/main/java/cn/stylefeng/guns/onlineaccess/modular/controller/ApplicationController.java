@@ -2,12 +2,12 @@ package cn.stylefeng.guns.onlineaccess.modular.controller;
 
 import cn.stylefeng.guns.core.pojo.response.ResponseData;
 import cn.stylefeng.guns.onlineaccess.modular.entity.Application;
+import cn.stylefeng.guns.onlineaccess.modular.param.DataAccessParam;
 import cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult;
 import cn.stylefeng.guns.onlineaccess.modular.service.ApplicationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,5 +30,11 @@ public class ApplicationController {
     @GetMapping("/api/user/getApplicantAndWorkflowRByApplicant")
     public ResponseData getApplicantAndWorkflowRByApplicant(Long applicant){
         return ResponseData.success(applicationService.getApplicantAndWorkflowRByApplicant(applicant));
+    }
+
+    @RequestMapping("/api/user/addDataAccessParam")
+    public ResponseData addApplication(@RequestBody DataAccessParam dataAccessParam){
+        applicationService.add(dataAccessParam);
+        return ResponseData.success();
     }
 }

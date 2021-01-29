@@ -41,10 +41,17 @@ public class DataTypeResult {
 
 
     /*
-     *  项目一对一映射 projectResult
+     *  项目一对一映射 dataTypeDirectorResult
      * */
-    private ProjectResult projectResult;
+    private DataTypeDirectorResult dataTypeDirectorResult;
 
+    public DataTypeDirectorResult getDataTypeDirectorResult() {
+        return dataTypeDirectorResult;
+    }
+
+    public void setDataTypeDirectorResult(DataTypeDirectorResult dataTypeDirectorResult) {
+        this.dataTypeDirectorResult = dataTypeDirectorResult;
+    }
 
     public int getId() {
         return id;

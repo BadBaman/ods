@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.onlineaccess.modular.param;
 
+import cn.stylefeng.guns.core.pojo.base.entity.BaseEntity;
 import cn.stylefeng.guns.core.pojo.base.param.BaseParam;
 import cn.stylefeng.guns.core.validation.date.DateValue;
 import cn.stylefeng.guns.sys.modular.emp.param.SysEmpParam;
@@ -10,74 +11,58 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Objects;
 
-public class DataAccessParam extends BaseParam {
+public class DataAccessParam extends BaseEntity {
 
     /**
      * 主键
      */
-    @NotNull(message = "id不能为空，请检查id参数",
-            groups = {edit.class, delete.class, detail.class, start.class,
-                    stop.class, grantRole.class, grantData.class, updateInfo.class,
-                    changeStatus.class})
+    @NotNull
     private Long id;
 
     /**
      * 申请人
      */
-    @NotBlank(message = "申请人不能为空，请检查applicant参数", groups = {add.class, edit.class})
-    private String applicant;
+    private Long applicantId;
 
     /**
-     * 手机
+     * 单位orgId
      */
-    @NotNull(message = "手机号码不能为空，请检查phone参数", groups = {add.class, edit.class, updateInfo.class})
-    @Size(min = 11, max = 11, message = "手机号码格式错误，请检查phone参数", groups = {add.class, edit.class, updateInfo.class})
-    private String phonenumber ;
+    private Long orgId ;
 
     /**
-     * 单位名
+     * 单位projectId
      */
-    @NotBlank(message = "姓名不能为空，请检查name参数", groups = {add.class, edit.class})
-    private String unitname;
-
-
-    /**
-     * 邮箱
-     */
-    @Email(message = "邮箱格式错误，请检查email参数", groups = {updateInfo.class})
-    private String email;
-
-
+    private Long projectId ;
 
     /**
      * 数据类别
      */
-    @NotNull(message = "数据类别不能为空，请检查grantRoleIdList参数", groups = {grantRole.class})
-    private int datatype;
+    private int dataTypeId;
+
+    /**
+     * 数据类型筛选原则
+     */
+    private String remark;
 
     /**
      * 课题名称
      */
-    @NotNull(message = "课题名称不能为空，请检查grantRoleIdList参数", groups = {grantRole.class})
-    private String taskname;
+    private String subjectName;
 
     /**
      * 关键字
      */
-    @NotNull(message = "关键字不能为空，请检查grantOrgIdList参数", groups = {grantData.class})
-    private String taskkey;
+    private String subjectKeyword;
 
     /**
      * 主要参与人
      */
 
-    @NotNull(message = "主要参与人不能为空，请检查grantOrgIdList参数", groups = {grantData.class})
-    private String mainparticipants;
+    private String projectParticipants;
 
     /**
      * 申请表文件
      */
-    @NotNull(message = "申请表文件不能为空，请检查grantOrgIdList参数", groups = grantData.class)
     private MultipartFile file ;
 
     public Long getId() {
@@ -88,70 +73,68 @@ public class DataAccessParam extends BaseParam {
         this.id = id;
     }
 
-    public String getApplicant() {
-        return applicant;
+    public Long getApplicantId() {
+        return applicantId;
     }
 
-    public void setApplicant(String applicant) {
-        this.applicant = applicant;
+    public void setApplicantId(Long applicantId) {
+        this.applicantId = applicantId;
     }
 
-
-
-    public String getEmail() {
-        return email;
+    public Long getOrgId() {
+        return orgId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
-    public String getUnitname() {
-        return unitname;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setUnitname(String unitname) {
-        this.unitname = unitname;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public int getDatatype() {
-        return datatype;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setDatatype(int datatype) {
-        this.datatype = datatype;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    public String getTaskname() {
-        return taskname;
+    public String getSubjectKeyword() {
+        return subjectKeyword;
     }
 
-    public void setTaskname(String taskname) {
-        this.taskname = taskname;
+    public void setSubjectKeyword(String subjectKeyword) {
+        this.subjectKeyword = subjectKeyword;
     }
 
-    public String getTaskkey() {
-        return taskkey;
+    public String getProjectParticipants() {
+        return projectParticipants;
     }
 
-    public void setTaskkey(String taskkey) {
-        this.taskkey = taskkey;
+    public void setProjectParticipants(String projectParticipants) {
+        this.projectParticipants = projectParticipants;
     }
 
-    public String getMainparticipants() {
-        return mainparticipants;
+    public int getDataTypeId() {
+        return dataTypeId;
     }
 
-    public void setMainparticipants(String mainparticipants) {
-        this.mainparticipants = mainparticipants;
+    public void setDataTypeId(int dataTypeId) {
+        this.dataTypeId = dataTypeId;
     }
 
     public MultipartFile getFile() {
@@ -162,42 +145,5 @@ public class DataAccessParam extends BaseParam {
         this.file = file;
     }
 
-    public DataAccessParam(@NotNull(message = "id不能为空，请检查id参数",
-            groups = {edit.class, delete.class, detail.class, start.class,
-                    stop.class, grantRole.class, grantData.class, updateInfo.class,
-                    changeStatus.class}) Long id, @NotBlank(message = "申请人不能为空，请检查applicant参数", groups = {add.class, edit.class}) String applicant, @NotNull(message = "手机号码不能为空，请检查phone参数", groups = {add.class, edit.class, updateInfo.class}) @Size(min = 11, max = 11, message = "手机号码格式错误，请检查phone参数", groups = {add.class, edit.class, updateInfo.class}) String phonenumber, @NotBlank(message = "姓名不能为空，请检查name参数", groups = {add.class, edit.class}) String unitname, @Email(message = "邮箱格式错误，请检查email参数", groups = {updateInfo.class}) String email, @NotNull(message = "数据类别不能为空，请检查grantRoleIdList参数", groups = {grantRole.class}) int datatype, @NotNull(message = "课题名称不能为空，请检查grantRoleIdList参数", groups = {grantRole.class}) String taskname, @NotNull(message = "关键字不能为空，请检查grantOrgIdList参数", groups = {grantData.class}) String taskkey, @NotNull(message = "主要参与人不能为空，请检查grantOrgIdList参数", groups = {grantData.class}) String mainparticipants, @NotNull(message = "申请表文件不能为空，请检查grantOrgIdList参数", groups = grantData.class) MultipartFile file) {
-        this.id = id;
-        this.applicant = applicant;
-        this.phonenumber = phonenumber;
-        this.unitname = unitname;
-        this.email = email;
-        this.datatype = datatype;
-        this.taskname = taskname;
-        this.taskkey = taskkey;
-        this.mainparticipants = mainparticipants;
-        this.file = file;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DataAccessParam that = (DataAccessParam) o;
-        return datatype == that.datatype &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(applicant, that.applicant) &&
-                Objects.equals(phonenumber, that.phonenumber) &&
-                Objects.equals(unitname, that.unitname) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(taskname, that.taskname) &&
-                Objects.equals(taskkey, that.taskkey) &&
-                Objects.equals(mainparticipants, that.mainparticipants) &&
-                Objects.equals(file, that.file);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id, applicant, phonenumber, unitname, email, datatype, taskname, taskkey, mainparticipants, file);
-    }
 }

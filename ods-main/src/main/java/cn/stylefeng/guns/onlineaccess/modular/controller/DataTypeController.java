@@ -18,4 +18,10 @@ public class DataTypeController {
     public ResponseData getDataManagerByProjectIdResult(Long id){
         return ResponseData.success(dataTypeService.getDataManagerByProjectIdResult(id));
     }
+
+
+    @GetMapping("/api/user/getDataTypeByProjectIdResult")
+    public ResponseData getDataTypeByProjectIdResult(Long id){
+        return ResponseData.success(dataTypeService.getDataTypeByProjectIdResult(id));
+    }
 }

@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -82,6 +83,7 @@ public class DataAccessServiceImpl extends ServiceImpl<DataAccessMapper, DataAcc
         return this.getOne(queryWrapper);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void add(DataAccessParam dataAccessParam) {
 

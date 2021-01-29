@@ -62,7 +62,7 @@
 <!--        </collection>-->
 <!--    </resultMap>-->
 
-
+    <!--        根据用户id和项目id获取申请表分页列表-->
     <select id="getApplicationByUserIdAndProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult">
         select c.*
         from
@@ -75,6 +75,7 @@
         where application.applicant_id=#{userId}) as c
     </select>
 
+    <!--        根据用户id获取申请表分页列表-->
     <select id="getApplicationByUserId" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult" >
         select c.*
         from
@@ -88,8 +89,9 @@
         where application.applicant_id=#{id}) as c
     </select>
 
-    <!-- parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" -->
-    <select id="getApplicantByApplicant" resultMap="applicationResult2">
+
+    <!--        根据申请人id获取申请表分页列表并外连接workflowr表-->
+    <select id="getApplicantByApplicant" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult2">
         select c.*
         from
         (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,workflow_r.application_id,workflow_r.current_task

@@ -12,6 +12,7 @@
         <result column="apply_num" property="applyNum" />
         <result column="approval_num" property="approvalNum" />
         <result column="visit_num" property="visitNum" />
+        <result column="is_suggestion" property="isSuggestion" />
         <association property="projectUserResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult">
             <result column="id" property="id" />
             <result column="project_id" property="projectId" />
@@ -36,6 +37,8 @@
 
 
     </resultMap>
+
+    <!--        根据项目id获取项目分页列表-->
     <select id="getProjectByProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
         select
                 project.*,
@@ -48,6 +51,7 @@
 
     </select>
 
+    <!--        根据用户id获取项目分页列表-->
     <select id="getProjectByUserIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
         select
                 project.id,project.name
@@ -59,10 +63,11 @@
 
     </select>
 
+    <!--        根据用户id和项目状态状态获取项目分页列表-->
     <select id="getProjectByUserIdAndStatusResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectResult" resultMap="projectResult">
         select a.*
         from
-        (select project.id,project.name,project.description,project.status
+        (select project.id,project.name,project.description,project.status,project.is_suggestion
         from project left join project_user
         on project_user.project_id=project.id
         <where>

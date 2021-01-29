@@ -1,5 +1,7 @@
 package cn.stylefeng.guns.onlineaccess.modular.result;
 
+import cn.stylefeng.guns.sys.modular.user.entity.SysUser;
+
 public class DataTypeDirectorResult {
 
     /*
@@ -21,6 +23,19 @@ public class DataTypeDirectorResult {
      *  数据类型一对一映射结果 dataTypeResult
      * */
     private DataTypeResult dataTypeResult;
+
+    /*
+     *  用户一对一映射结果 sysUser
+     * */
+    private SysUser sysUser;
+
+    public SysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+    }
 
     public int getId() {
         return id;

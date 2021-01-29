@@ -11,9 +11,12 @@ import java.util.List;
 @Mapper
 public interface ApplicationMapper  extends BaseMapper<Application> {
 
+
     List<Application> getApplicationByUserIdAndProjectIdResult(Page page, Long projectId, Long userId);
+
 
     List<Application> getApplicationByUserId(Page page,Long id);
 
-    List<ApplicationResult> getApplicantByApplicant(Page page,Long applicant);
+
+    List<Application> getApplicantByApplicant(Page page,Long applicant);
 }

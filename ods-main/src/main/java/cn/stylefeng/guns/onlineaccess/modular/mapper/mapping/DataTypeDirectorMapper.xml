@@ -39,16 +39,6 @@
 <!--            <result property="createTime" column="create_time"/>-->
 <!--        </association>-->
 <!--    </resultMap>-->
-    <select id="dataTypeDirectorList" parameterType="cn.stylefeng.guns.onlineaccess.modular.entity.DataTypeDirector" resultMap="dataTypeDirector">
-        select data_type_director.*,admin_classify.*,admin_classify.id as classify_id from goods left join admin_classify on
-        goods.classify_id=admin_classify.id
-        where goods.del=0
-        <if test="form.goodsName != null">
-            and goods.goods_name=#{form.goodsName}
-        </if>
-        <if test="form.classifyId != null">
-            and goods.classify_id=#{form.classifyId}
-        </if>
-    </select>
+
     <!--        获取项目分页列表-->
 </mapper>

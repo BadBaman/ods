@@ -11,5 +11,5 @@ import java.util.List;
 @Mapper
 public interface DataTypeMapper extends BaseMapper<DataType> {
 
-
+    List<DataType> getDataTypeByProjectIdResult(Page page,Long id);
 }

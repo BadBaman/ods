@@ -35,17 +35,7 @@ public class DataAccessController {
 //        return new SuccessResponseData(dataAccessService.getStatisticByProid(proid));
 //    }
 
-    /**
-     * 提交用户申请表单
-     *
-     * @author likaiyuan
-     * @date 2020/12/28 15:51
-     */
-    @PostMapping("/api/user/submitapply")
-    public ResponseData submitapply(@RequestBody @Validated(DataAccessParam.add.class) DataAccessParam dataAccessParam) {
-        //applicationService.add(dataAccessParam);
-        return new SuccessResponseData();
-    }
+
 
     /**
      * 根据名称查询数据访问申请列表

@@ -23,6 +23,7 @@
 
     </resultMap>
 
+    <!--        根据用户id和项目id获取用户分页列表-->
     <select id="getProjectByUserIdAndProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.UserResult" resultMap="userResult">
         select d.*
         from
@@ -40,6 +41,7 @@
                          ) as c on sys_user.id=c.applicant_id where c.applicant_id=#{userId}) as d
     </select>
 
+    <!--        根据用户id获取用户分页列表-->
     <select id="getUserById" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.UserResult" resultMap="userResult">
         select sys_user.id,sys_user.name,sys_user.email,sys_user.phone,application.subject_name
         from sys_user left join application on sys_user.id=application.applicant_id

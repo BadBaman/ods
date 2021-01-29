@@ -15,6 +15,8 @@
         </association>
 
     </resultMap>
+
+    <!--        根据项目id获取用户分页列表(数据协调员)-->
     <select id="getDatanegotiatorByProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult" resultMap="projectUserResult">
         select sys_user.name,sys_user.email,sys_user.phone
         from project_user

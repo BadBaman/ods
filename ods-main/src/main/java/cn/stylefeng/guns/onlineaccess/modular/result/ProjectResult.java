@@ -54,6 +54,19 @@ public class ProjectResult {
     private int visitNum;
 
     /*
+     *  是否需要数据负责人审批 isSuggestion
+     * */
+    private int isSuggestion;
+
+    public int getIsSuggestion() {
+        return isSuggestion;
+    }
+
+    public void setIsSuggestion(int isSuggestion) {
+        this.isSuggestion = isSuggestion;
+    }
+
+    /*
      *  项目用户关联信息 projectUserResult
      * */
     private ProjectUserResult projectUserResult;
