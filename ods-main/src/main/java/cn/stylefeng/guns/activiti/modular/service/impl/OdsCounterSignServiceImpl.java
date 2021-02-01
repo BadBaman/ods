@@ -125,7 +125,7 @@ public class OdsCounterSignServiceImpl implements OdsCounterSignService {
         Long dataCoordinatorId = dataCoordinatorList.get(0).getUserId();
         variables.put("dataCoordinatorId", dataCoordinatorId);
 
-        List<ProjectUserResult> counterSignusers = projectUserService.getDatanegotiatorByProjectIdResult(projectId, 5);
+        List<ProjectUserResult> counterSignusers = projectUserService.getDatanegotiatorByProjectIdResult(projectId, 7);
         if (counterSignusers != null && counterSignusers.size() > 0) {
             List<String> users = counterSignusers.stream().map(x -> String.valueOf(x.getUserId())).collect(Collectors.toList());
             //List<String> users = new ArrayList<String>();
