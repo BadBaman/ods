@@ -141,7 +141,6 @@ public class OdsCounterSignServiceImpl implements OdsCounterSignService {
         identityService.setAuthenticatedUserId(applyUserId);
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("ods", businessKey, variables);
 
-
         //3. 将相关信息插入workflow_r表中
         WorkFlowR workFlowR = new WorkFlowR();
         workFlowR.setProcId(processInstance.getId());
