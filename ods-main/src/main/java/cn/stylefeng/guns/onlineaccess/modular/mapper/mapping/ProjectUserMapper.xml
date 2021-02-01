@@ -8,7 +8,7 @@
         <result column="status" property="status" />
         <result column="type" property="type" />
         <association property="userResult" javaType="cn.stylefeng.guns.sys.modular.user.entity.SysUser">
-            <result column="id" property="id" />
+            <result column="sid" property="id" />
             <result column="name" property="name" />
             <result column="email" property="email" />
             <result column="phone" property="phone" />
@@ -18,7 +18,8 @@
 
     <!--        根据项目id获取用户分页列表(数据协调员)-->
     <select id="getDatanegotiatorByProjectIdResult" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult" resultMap="projectUserResult">
-        select sys_user.name,sys_user.email,sys_user.phone
+        select project_user.id,project_user.user_id,project_user.project_id,
+        project_user.status,project_user.type,sys_user.id sid,sys_user.name,sys_user.email,sys_user.phone
         from project_user
         left join sys_user on sys_user.id=project_user.user_id
         where project_user.project_id=#{id} and project_user.type=#{type}

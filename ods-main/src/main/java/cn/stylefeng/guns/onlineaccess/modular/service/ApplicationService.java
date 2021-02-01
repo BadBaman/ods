@@ -3,7 +3,6 @@ package cn.stylefeng.guns.onlineaccess.modular.service;
 import cn.stylefeng.guns.onlineaccess.modular.entity.Application;
 import cn.stylefeng.guns.onlineaccess.modular.param.DataAccessParam;
 import cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult;
-import cn.stylefeng.guns.sys.modular.user.param.SysUserParam;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public interface ApplicationService extends IService<Application> {
      * @author 李开元
      * @date 2021/1/27 9:26
      */
-    List<Application> getApplicationByUserIdAndProjectIdResult(Long projectId,Long userId);
+    List<Application> getApplicationByUserIdAndProjectIdResult(Long projectId, Long userId);
 
     /**
      * 根据用户id查询申请
@@ -35,7 +34,7 @@ public interface ApplicationService extends IService<Application> {
      * @author 李开元
      * @date 2021/1/27 9:26
      */
-    List<Application> getApplicantAndWorkflowRByApplicant(Long applicant);
+    List<ApplicationResult> getApplicantAndWorkflowRByApplicant(Long applicant);
 
     /**
      * 添加申请表
@@ -45,4 +44,7 @@ public interface ApplicationService extends IService<Application> {
      * @date 2021/1/27 9:26
      */
     void add(DataAccessParam dataAccessParam);
+
+
+    ApplicationResult getApplicantAndWorkflowRByApplicationId(String applicationId);
 }

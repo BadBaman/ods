@@ -43,39 +43,44 @@ public class ApplicationServiceImpl extends ServiceImpl<ApplicationMapper, Appli
 
     @Override
     public List<Application> getApplicationByUserIdAndProjectIdResult(Long projectId, Long userId) {
-        return this.baseMapper.getApplicationByUserIdAndProjectIdResult(PageFactory.defaultPage(),projectId,userId);
+        return this.baseMapper.getApplicationByUserIdAndProjectIdResult(PageFactory.defaultPage(), projectId, userId);
     }
 
     @Override
     public List<Application> getApplicationByUserId(Long id) {
-        return this.baseMapper.getApplicationByUserId(PageFactory.defaultPage(),id);
+        return this.baseMapper.getApplicationByUserId(PageFactory.defaultPage(), id);
     }
 
     @Override
     public List<ApplicationResult> getApplicantAndWorkflowRByApplicant(Long applicant) {
-        return this.baseMapper.getApplicantByApplicant(PageFactory.defaultPage(),applicant);
+        return this.baseMapper.getApplicantByApplicant(PageFactory.defaultPage(), applicant);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void add(DataAccessParam dataAccessParam) {
-        Application application=new Application();
-        BeanUtil.copyProperties(dataAccessParam,application);
+        Application application = new Application();
+        BeanUtil.copyProperties(dataAccessParam, application);
         application.setCreatedTime(new Date());
         this.save(application);
-        int dataTypeId=dataAccessParam.getDataTypeId();
-        Long applicationId=application.getId();
-        ApplicationDataType applicationDataType=new ApplicationDataType();
+        int dataTypeId = dataAccessParam.getDataTypeId();
+        Long applicationId = application.getId();
+        ApplicationDataType applicationDataType = new ApplicationDataType();
         applicationDataType.setApplicationId(applicationId);
         applicationDataType.setDataTypeId(dataTypeId);
         applicationDataTypeService.add(applicationDataType);
-        MultipartFile file=dataAccessParam.getFile();
-        if(file!=null){
-            Long fileId=sysFileInfoService.uploadFile(file);
-            ApplicationFile applicationFile=new ApplicationFile();
+        MultipartFile file = dataAccessParam.getFile();
+        if (file != null) {
+            Long fileId = sysFileInfoService.uploadFile(file);
+            ApplicationFile applicationFile = new ApplicationFile();
             applicationFile.setApplicationId(applicationId);
             applicationFile.setFileId(fileId);
             applicationFileService.add(applicationFile);
         }
+    }
+
+    @Override
+    public ApplicationResult getApplicantAndWorkflowRByApplicationId(String applicationId) {
+        return this.baseMapper.getApplicantAndWorkflowRByApplicationId(PageFactory.defaultPage(), applicationId);
     }
 }

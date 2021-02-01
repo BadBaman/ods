@@ -1,7 +1,9 @@
 package cn.stylefeng.guns.onlineaccess.modular.entity;
 
 import cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult;
+import com.baomidou.mybatisplus.annotation.TableName;
 
+@TableName("workflow_r")
 public class WorkFlowR {
 
     /*
@@ -82,5 +84,17 @@ public class WorkFlowR {
 
     public void setApplicationResult(ApplicationResult applicationResult) {
         this.applicationResult = applicationResult;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkFlowR{" +
+                "id=" + id +
+                ", status=" + status +
+                ", applicationId=" + applicationId +
+                ", procId='" + procId + '\'' +
+                ", currentTask='" + currentTask + '\'' +
+                ", applicationResult=" + applicationResult +
+                '}';
     }
 }

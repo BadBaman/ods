@@ -96,4 +96,17 @@ public class ProjectUserResult {
     public void setUserResult(SysUser userResult) {
         this.userResult = userResult;
     }
+
+    @Override
+    public String toString() {
+        return "ProjectUserResult{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", projectId=" + projectId +
+                ", status=" + status +
+                ", type=" + type +
+                ", userResult=" + userResult +
+                ", projectResult=" + projectResult +
+                '}';
+    }
 }

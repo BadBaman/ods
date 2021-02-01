@@ -36,14 +36,29 @@
         <result column="org_id" property="orgId" />
         <result column="subject_keyword" property="subjectKeyword" />
         <result column="project_participants" property="projectParticipants" />
+
         <association property="workFlowR" javaType="cn.stylefeng.guns.onlineaccess.modular.entity.WorkFlowR">
-            <result column="id" property="id" />
+            <result column="workflowid" property="id" />
             <result column="proc_id" property="procId" />
             <result column="status" property="status" />
             <result column="application_id" property="applicationId" />
             <result column="current_task" property="currentTask" />
         </association>
+
+        <collection property="applicationDataTypeResultList" ofType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationDataTypeResult" javaType = "java.util.ArrayList">
+<!--            <id column="typeid" property="id" />-->
+            <result column="aid" property="applicationId"/>
+            <association property="dataTypeResult" javaType="cn.stylefeng.guns.onlineaccess.modular.result.DataTypeResult">
+<!--                <result column="id" property="id" />-->
+                <result column="name" property="name" />
+                <result column="email" property="email" />
+<!--                <result column="category" property="category" />-->
+                <result column="data_manager" property="dataManager" />
+            </association>
+        </collection>
     </resultMap>
+
+
 <!--    <resultMap id="applicationDetails" type="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult">-->
 <!--        <id column="id" property="id" />-->
 <!--        <result column="status" property="status" />-->
@@ -94,10 +109,33 @@
     <select id="getApplicantByApplicant" parameterType="cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult" resultMap="applicationResult2">
         select c.*
         from
-        (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,workflow_r.application_id,workflow_r.current_task
+        (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,
+				workflow_r.application_id,workflow_r.current_task,a.*
+        from application
+        left join workflow_r
+        on application.id=workflow_r.application_id
+		left join (
+        select  application_data_type.application_id aid,data_type.name,data_type.data_manager,data_type.email,data_type.category
+        from application_data_type left join data_type
+        on application_data_type.data_type_id=data_type.id
+        ) as a on application.id=a.aid
+        where application.applicant_id=#{applicant}
+        ) as c
+    </select>
+
+
+    <select id="getApplicantAndWorkflowRByApplicationId" resultMap="applicationResult2">
+        select c.*
+        from
+        (select application.*,workflow_r.id as workflowid,workflow_r.proc_id,workflow_r.status as workflowstatus,workflow_r.application_id,workflow_r.current_task,a.*
         from application left join workflow_r
         on application.id=workflow_r.application_id
-        where application.applicant_id=#{applicant}
+        left join (
+        select  application_data_type.application_id aid,data_type.name,data_type.data_manager,data_type.email,data_type.category
+        from application_data_type left join data_type
+        on application_data_type.data_type_id=data_type.id
+        ) as a on application.id=a.aid
+        where application.id=#{applicationId}
         ) as c
     </select>
 </mapper>

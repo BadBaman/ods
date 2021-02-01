@@ -277,4 +277,25 @@ public class SysUser extends BaseEntity {
     public int hashCode() {
         return Objects.hash(super.hashCode(), id, account, password, nickName, name, avatar, birthday, sex, email, phone, tel, lastLoginIp, lastLoginTime, adminType, status);
     }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", name='" + name + '\'' +
+                ", avatar=" + avatar +
+                ", birthday=" + birthday +
+                ", sex=" + sex +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", tel='" + tel + '\'' +
+                ", lastLoginIp='" + lastLoginIp + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", adminType=" + adminType +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(value = "/leave",tags = "请假流程控制器")
+//@Api(value = "/leave",tags = "请假流程控制器")
 @RestController
 @RequestMapping("/leave")
 public class BizLeaveController {
@@ -29,7 +29,7 @@ public class BizLeaveController {
     @Autowired
     private IBizLeaveService bizLeaveService;
 
-    @ApiOperation("请假流程列表")
+    //@ApiOperation("请假流程列表")
     @RequestMapping(value = "/list",method = RequestMethod.POST)
     public ResponseData leaveList(BizLeaveVo bizLeaveVo){
         bizLeaveVo.setType("leave");
@@ -43,7 +43,7 @@ public class BizLeaveController {
         return new SuccessResponseData(bizLeaveService.selectBizLeaveList(bizLeaveVo));
     }
 
-    @ApiOperation("已办流程列表")
+    //@ApiOperation("已办流程列表")
     @RequestMapping(value = "/taskdonelist",method = RequestMethod.POST)
     public ResponseData leaveTaskDoneList(BizLeaveVo bizLeaveVo){
         bizLeaveVo.setType("leave");
@@ -53,7 +53,7 @@ public class BizLeaveController {
         return new SuccessResponseData(bizLeaveService.findTaskDoneList(bizLeaveVo,userId));
     }
 
-    @ApiOperation("代办流程列表")
+    //@ApiOperation("代办流程列表")
     @RequestMapping(value = "/tasktodolist",method = RequestMethod.POST)
     public ResponseData leaveToDoTaskDoneList(BizLeaveVo bizLeaveVo){
         bizLeaveVo.setType("leave");
@@ -62,7 +62,7 @@ public class BizLeaveController {
         return new SuccessResponseData(bizLeaveService.findToDoTaskDoneList(bizLeaveVo,userId));
     }
 
-    @ApiOperation("获取流程图片")
+    //@ApiOperation("获取流程图片")
     @RequestMapping(value = "/read-resource")
     public void readResource(String pProcessInstanceId, HttpServletResponse response) throws Exception {
         // 设置页面不缓存
@@ -72,7 +72,7 @@ public class BizLeaveController {
         bizLeaveService.resloveProcessDiagram(pProcessInstanceId,response);
     }
 
-    @ApiOperation("新增请假流程")
+    //@ApiOperation("新增请假流程")
     @PostMapping("/insertbizleave")
     public ResponseData insertBizLeave(BizLeaveVo bizLeaveVo){
         SysLoginUser user = LoginContextHolder.me().getSysLoginUser();
@@ -81,7 +81,7 @@ public class BizLeaveController {
 
     }
 
-    @ApiOperation("开启流程")
+    //@ApiOperation("开启流程")
     @PostMapping("/startprocess")
     public ResponseData startProcess(BizLeaveVo bizLeaveVo){
         SysLoginUser user = LoginContextHolder.me().getSysLoginUser();
@@ -91,7 +91,7 @@ public class BizLeaveController {
         return new SuccessResponseData(bizLeaveService.submitApply(bizLeaveVo,user,key,variables));
     }
 
-    @ApiOperation("完成任务")
+    //@ApiOperation("完成任务")
     @PostMapping("/completetask")
     public ResponseData completeTask(ApproveDto approveDto){
         String userId = String.valueOf(LoginContextHolder.me().getSysLoginUser().getId());
@@ -99,7 +99,7 @@ public class BizLeaveController {
         return new SuccessResponseData();
     }
 
-    @ApiOperation("审批历史列表")
+    //@ApiOperation("审批历史列表")
     @PostMapping("/historylist/{processInstanceId}")
     public ResponseData getHistoryListByProcessInstanceId(
             @PathVariable(value = "processInstanceId")String processInstanceId,

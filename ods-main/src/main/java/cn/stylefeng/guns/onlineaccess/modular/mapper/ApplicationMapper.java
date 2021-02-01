@@ -5,6 +5,7 @@ import cn.stylefeng.guns.onlineaccess.modular.result.ApplicationResult;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,5 +19,8 @@ public interface ApplicationMapper  extends BaseMapper<Application> {
     List<Application> getApplicationByUserId(Page page,Long id);
 
 
-    List<Application> getApplicantByApplicant(Page page,Long applicant);
+
+    List<ApplicationResult> getApplicantByApplicant(Page page,@Param("applicant") Long applicant);
+
+    ApplicationResult getApplicantAndWorkflowRByApplicationId(Page page,@Param("applicationId") String applicationId);
 }

@@ -346,6 +346,7 @@ public class BizLeaveServiceImpl implements IBizLeaveService {
         list.forEach(instance -> {
             HistoricActivity activity = new HistoricActivity();
             BeanUtils.copyProperties(instance,activity);
+            //instance.
             String taskId = instance.getTaskId();
             //查询历史评论
             List<Comment> comments = taskService.getTaskComments(taskId, "comment");

@@ -150,4 +150,20 @@ public class ApplicationResult {
         this.applicationFileResult = applicationFileResult;
     }
 
+    @Override
+    public String toString() {
+        return "ApplicationResult{" +
+                "id=" + id +
+                ", status=" + status +
+                ", applicantId=" + applicantId +
+                ", orgId=" + orgId +
+                ", createdTime=" + createdTime +
+                ", subjectName='" + subjectName + '\'' +
+                ", subjectKeyword='" + subjectKeyword + '\'' +
+                ", projectParticipants='" + projectParticipants + '\'' +
+                ", applicationFileResult=" + applicationFileResult +
+                ", applicationDataTypeResultList=" + applicationDataTypeResultList +
+                ", workFlowR=" + workFlowR +
+                '}';
+    }
 }

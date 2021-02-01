@@ -99,6 +99,7 @@ public class OdsServiceTest extends BaseJunit {
         List<Task> taskList1 = taskService.createTaskQuery().processDefinitionKey("ods").listPage(0, 100);
         for (Task task : taskList1) {
             logger.info("task = {}", task);
+            //logger.info("task = {}", task.);
             logger.info("task.name = {},task.Assignee = {}", task.getName(), task.getAssignee());
             taskService.complete(task.getId());
         }
@@ -109,6 +110,7 @@ public class OdsServiceTest extends BaseJunit {
         //秘书确认 需要传入是否召开 评审会议变量 needJudgeMeeting
         for (Task task : taskList2) {
             logger.info("task = {}", task);
+            logger.info("task.formkey = {}", task.getFormKey());
             logger.info("task.name = {},task.Assignee = {}", task.getName(), task.getAssignee());
             Map<String, Object> var = Maps.newHashMap();
             var.put("needJudgeMeeting", true);
@@ -119,6 +121,7 @@ public class OdsServiceTest extends BaseJunit {
         //秘书录入评审意见 需要传入是否通过评审变量 passReview
         for (Task task : taskList3) {
             logger.info("task = {}", task);
+            logger.info("task.formkey = {}", task.getFormKey());
             logger.info("task.name = {},task.Assignee = {}", task.getName(), task.getAssignee());
             Map<String, Object> var = Maps.newHashMap();
             var.put("passReview", true);
@@ -145,6 +148,7 @@ public class OdsServiceTest extends BaseJunit {
         List<Task> taskList6 = taskService.createTaskQuery().processDefinitionKey("ods").listPage(0, 100);
         for (Task task : taskList6) {
             logger.info("task = {}", task);
+            logger.info("task.formkey = {}", task.getFormKey());
             logger.info("task.name = {},task.Assignee = {}", task.getName(), task.getAssignee());
             Map<String, Object> var = Maps.newHashMap();
             var.put("havaDoubt", true);
@@ -155,6 +159,7 @@ public class OdsServiceTest extends BaseJunit {
         List<Task> taskList7 = taskService.createTaskQuery().processDefinitionKey("ods").listPage(0, 100);
         for (Task task : taskList7) {
             logger.info("task = {}", task);
+            logger.info("task.formkey = {}", task.getFormKey());
             logger.info("task.name = {},task.Assignee = {}", task.getName(), task.getAssignee());
             Map<String, Object> var = Maps.newHashMap();
             var.put("needReDeliver", false);

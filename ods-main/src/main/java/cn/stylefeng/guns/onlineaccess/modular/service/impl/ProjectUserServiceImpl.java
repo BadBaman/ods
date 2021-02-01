@@ -3,6 +3,7 @@ package cn.stylefeng.guns.onlineaccess.modular.service.impl;
 import cn.stylefeng.guns.core.factory.PageFactory;
 import cn.stylefeng.guns.onlineaccess.modular.entity.ProjectUser;
 import cn.stylefeng.guns.onlineaccess.modular.mapper.ProjectUserMapper;
+import cn.stylefeng.guns.onlineaccess.modular.result.ProjectUserResult;
 import cn.stylefeng.guns.onlineaccess.modular.service.ProjectUserService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -18,7 +19,7 @@ public class ProjectUserServiceImpl extends ServiceImpl<ProjectUserMapper,Projec
     ProjectUserService projectUserService;
 
     @Override
-    public List<ProjectUser> getDatanegotiatorByProjectIdResult(Long id, int type) {
+    public List<ProjectUserResult> getDatanegotiatorByProjectIdResult(Long id, int type) {
         return this.baseMapper.getDatanegotiatorByProjectIdResult(PageFactory.defaultPage(),id,type);
     }
 }

@@ -30,6 +30,11 @@ public class HistoricActivity extends HistoricActivityInstanceEntityImpl {
         this.assigneeName = assigneeName;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "HistoricActivity{" +
+                "comment='" + comment + '\'' +
+                ", assigneeName='" + assigneeName + '\'' +
+                '}';
+    }
 }

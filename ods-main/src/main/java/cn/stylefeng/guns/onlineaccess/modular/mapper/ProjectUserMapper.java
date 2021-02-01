@@ -11,5 +11,5 @@ import java.util.List;
 @Mapper
 public interface ProjectUserMapper extends BaseMapper<ProjectUser> {
 
-    List<ProjectUser> getDatanegotiatorByProjectIdResult(Page page, Long id,int type);
+    List<ProjectUserResult> getDatanegotiatorByProjectIdResult(Page page, Long id,int type);
 }

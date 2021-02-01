@@ -44,7 +44,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${signedCounter == users.size()}]]></conditionExpression>
     </sequenceFlow>
 
-    <userTask activiti:exclusive="true" activiti:assignee="${secretaryId}" id="secretaryConfirmation" name="秘书确认"/>
+    <userTask activiti:exclusive="true"  activiti:formKey="secretaryId:needJudgeMeeting" activiti:assignee="${secretaryId}" id="secretaryConfirmation" name="秘书确认"/>
 
     <sequenceFlow id="_13" sourceRef="secretaryConfirmation" targetRef="_11"/>
 
@@ -62,7 +62,7 @@
       </conditionExpression>
     </sequenceFlow>
 
-    <userTask activiti:exclusive="true" activiti:assignee="${secretaryId}" id="inputReviewCommet" name="录入评审意见"/>
+    <userTask activiti:exclusive="true" activiti:formKey="secretaryId:passReview" activiti:assignee="${secretaryId}" id="inputReviewCommet" name="录入评审意见"/>
 
     <sequenceFlow id="_26" sourceRef="inputReviewCommet" targetRef="WhetherPassReview"/>
 
@@ -84,7 +84,7 @@
 
     <sequenceFlow id="_6" sourceRef="deliverData" targetRef="submitDoubt"/>
 
-    <userTask activiti:exclusive="true" activiti:assignee="${applyUserId}" id="submitDoubt" name="提交疑问申请"/>
+    <userTask activiti:exclusive="true" activiti:formKey="applyUserId:havaDoubt" activiti:assignee="${applyUserId}" id="submitDoubt" name="提交疑问申请"/>
 
     <sequenceFlow id="_18" sourceRef="submitDoubt" targetRef="whetherHaveDoubt"/>
 
@@ -102,7 +102,7 @@
       </conditionExpression>
     </sequenceFlow>
 
-    <userTask activiti:exclusive="true" activiti:assignee="${dataCoordinatorId}" id="coordinatorConfirmation" name="协调员确认"/>
+    <userTask activiti:exclusive="true" activiti:formKey="dataCoordinatorId:needReDeliver" activiti:assignee="${dataCoordinatorId}" id="coordinatorConfirmation" name="协调员确认"/>
 
     <sequenceFlow id="_57" sourceRef="coordinatorConfirmation" targetRef="whetherNeedRedeliver"/>
 
